@@ -18,8 +18,8 @@ class TestController implements Listener{
     
     @EventHandler
     public void onPlayerMoved(PlayerMoveEvent event){
-        Player player = event.getPlayer(); 
-        player.sendMessage(player.getDisplayName() + " has moved.");
+        // Player player = event.getPlayer(); 
+        // player.sendMessage(player.getDisplayName() + " has moved.");
     }
 
     @EventHandler

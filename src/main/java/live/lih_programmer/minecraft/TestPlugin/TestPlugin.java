@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import live.lih_programmer.minecraft.TestPlugin.TestController;
 
 public class TestPlugin extends JavaPlugin implements Listener{
 	@Override
