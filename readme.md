@@ -1,6 +1,6 @@
 ## Test the Plugin
 
-To test the Plugin you can run the bash script in root directory. 
+To test the Plugin you can run the bash script in root directory `runTestServer.sh`. 
 
 ## Requirements
 
