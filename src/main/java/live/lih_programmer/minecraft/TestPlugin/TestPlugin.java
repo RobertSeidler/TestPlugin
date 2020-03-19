@@ -1,13 +1,8 @@
 package live.lih_programmer.minecraft.TestPlugin;
 
 import java.lang.reflect.Field;
-import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.function.Consumer;
-
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -15,7 +10,6 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
