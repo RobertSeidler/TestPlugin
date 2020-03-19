@@ -1,7 +1,7 @@
-# Test the Plugin
+## Test the Plugin
 
 To test the Plugin you can run the bash script in root directory. 
 
-# Requirements
+## Requirements
 
 Java SDK 7, Maven and Docker.
