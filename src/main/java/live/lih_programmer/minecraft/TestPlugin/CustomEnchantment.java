@@ -47,37 +47,37 @@ public class CustomEnchantment extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 2;
+        return this.maxLvl;
     }
 
     @Override
     public int getStartLevel() {
-        return 1;
+        return this.startLvl;
     }
 
     @Override
     public EnchantmentTarget getItemTarget() {
-        return null;
+        return this.target;
     }
 
     @Override
     public boolean isTreasure() {
-        return false;
+        return this.treasure;
     }
 
     @Override
     public boolean isCursed() {
-        return false;
+        return this.cursed;
     }
 
     @Override
     public boolean conflictsWith(Enchantment other) {
-        return false;
+        return conflicts.contains(other);
     }
 
     @Override
     public boolean canEnchantItem(ItemStack item) {
-        return true;
+        return enchantables.contains(item);
     }
 
 }
