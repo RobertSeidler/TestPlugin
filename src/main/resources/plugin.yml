@@ -1,3 +1,8 @@
 name: TestPlugin
 main: live.lih_programmer.minecraft.TestPlugin.TestPlugin
 version: 0.0.1
+author: RoboSummer
+commands:
+  givecollectchest:
+    description: Adds a Collect enchanted chest to the player.
+    usage: /givecollectchest <lvl>
