@@ -41,6 +41,12 @@ class EnchantedItem{
         this.setItemMeta();
     }
 
+    public EnchantedItem(String name, String description, Enchantment enchant, int enchantLvl, Material material){
+        this(name, description, enchant, enchantLvl);
+        this.item = new ItemStack(material);
+        this.setItemMeta();
+    }
+
     private void setItemMeta(){
         ItemMeta scrollMeta = this.item.getItemMeta();
         scrollMeta.setDisplayName(this.name);

@@ -1,6 +1,5 @@
 package live.lih_programmer.minecraft.TestPlugin;
 
-import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import org.bukkit.Location;
@@ -17,7 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class TestPlugin extends JavaPlugin implements Listener{
 
-	public static Enchantment COLLECT_ENCH = new CustomEnchantment(69, "Collect", 2, 1);
+	public static Enchantment COLLECT_ENCH = new CustomEnchantment(69, "Collect", "", 2, 1);
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -29,6 +28,7 @@ public class TestPlugin extends JavaPlugin implements Listener{
 				return true;
 			} catch(Exception e){
 				sender.sendMessage(e.getMessage());
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -38,28 +38,7 @@ public class TestPlugin extends JavaPlugin implements Listener{
 	public void onEnable() {
 		getLogger().info("onEnable has been invoked!");
 
-		defineCustomEnchantment();
-
 		defineScheduler();
-	}
-
-	private void defineCustomEnchantment(){
-		try{
-			try{
-				Field f = Enchantment.class.getDeclaredField("acceptingNew");
-				f.setAccessible(true);
-				f.set(null, true);
-			} catch(Exception e){
-				e.printStackTrace();
-			}
-			try{
-				Enchantment.registerEnchantment(TestPlugin.COLLECT_ENCH);
-			} catch (IllegalArgumentException e){
-				getLogger().info("Enchantment ID is already in use.");
-			}
-		} catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 
 	private void defineScheduler(){
@@ -67,13 +46,7 @@ public class TestPlugin extends JavaPlugin implements Listener{
 		
 			@Override
 			public void run() {
-				// long start = System.currentTimeMillis();
-				
 				applyCollectAbillity();
-
-				// long timePassed = System.currentTimeMillis() - start;
-
-				// getLogger().info("Time passed during sync Task: " + timePassed + " ms");
 			}
 			
 			private void collectNearbyItems(Player player, Item item){
