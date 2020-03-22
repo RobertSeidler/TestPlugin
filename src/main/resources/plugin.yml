@@ -6,3 +6,6 @@ commands:
   givecollectchest:
     description: Adds a Collect enchanted chest to the player.
     usage: /givecollectchest <lvl>
+  givecollectscroll:
+    description: Adds a Collect 1 scroll to the player.
+    usage: /givecollectscroll

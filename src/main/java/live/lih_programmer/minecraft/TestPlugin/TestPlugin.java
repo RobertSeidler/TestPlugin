@@ -11,23 +11,41 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class TestPlugin extends JavaPlugin implements Listener{
 
-	public static Enchantment COLLECT_ENCH = new CustomEnchantment(69, "Collect", "", 2, 1);
+	private static Plugin instance;
+
+	private String COMMAND_FAILED = "Execution failed.";
+	public static Enchantment COLLECT_ENCH;
+
+	public TestPlugin(){
+		super();
+		instance = this;
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(command.getName().equalsIgnoreCase("givecollectchest")){
 			try{
 				int lvl = Integer.parseInt(args[0]);
-				ItemStack chest = (new EnchantedItem("Collect " + lvl, "", TestPlugin.COLLECT_ENCH, lvl).getItemStack());
+				ItemStack chest = (new EnchantedItem("Chainmail", "Collect " + lvl, TestPlugin.COLLECT_ENCH, lvl).getItemStack());
 				((Player) sender).getInventory().addItem(chest);
 				return true;
 			} catch(Exception e){
-				sender.sendMessage(e.getMessage());
+				sender.sendMessage(COMMAND_FAILED);
+				e.printStackTrace();
+			}
+		} else if(command.getName().equalsIgnoreCase("givecollectscroll")){
+			try{
+				ItemStack scroll = ((CustomEnchantment)COLLECT_ENCH).createScroll(1);
+				((Player) sender).getInventory().addItem(scroll);
+				return true;
+			} catch(Exception e){
+				sender.sendMessage(COMMAND_FAILED);
 				e.printStackTrace();
 			}
 		}
@@ -37,6 +55,8 @@ public class TestPlugin extends JavaPlugin implements Listener{
 	@Override
 	public void onEnable() {
 		getLogger().info("onEnable has been invoked!");
+		
+		COLLECT_ENCH = new CustomEnchantment(69, "Collect", "Regularly picks up items from a big radius around the Player.", 2, 1);
 
 		defineScheduler();
 	}
@@ -80,11 +100,13 @@ public class TestPlugin extends JavaPlugin implements Listener{
 
 		}, 200*3L, 100);
 	}
-
-
 	
 	@Override
 	public void onDisable() {
 		getLogger().info("onDisable has been invoked!");
+	}
+
+	public static Plugin getInstance(){
+		return instance;
 	}
 }
